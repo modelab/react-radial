@@ -31124,7 +31124,7 @@ var Demo = function (_Component) {
         },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
-          { style: { width: '75%', margin: '0 auto', marginTop: '30px', fontSize: '12px', padding: '0px' } },
+          { style: { width: '75%', margin: '0 auto', marginTop: '60px', fontSize: '12px', padding: '0px' } },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'h3',
             { style: { marginBottom: '40px' } },
@@ -68629,4 +68629,4 @@ module.exports = function(exec){
 /***/ })
 
 },[0]);
-//# sourceMappingURL=demo.b8aa925a.js.map
+//# sourceMappingURL=demo.6e6af768.js.map
