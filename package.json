@@ -1,7 +1,7 @@
 {
   "name": "react-radial",
   "version": "1.0.0",
-  "description": "react-radial React component",
+  "description": "a radial component built with react and resonance",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -9,6 +9,15 @@
     "es",
     "lib",
     "umd"
+  ],
+  "keywords": [
+    "radial",
+    "pie",
+    "menu",
+    "react",
+    "d3",
+    "resonance",
+    "react-component"
   ],
   "scripts": {
     "build": "nwb build-react-component",
@@ -20,10 +29,7 @@
   },
   "dependencies": {
     "d3": "^4.10.0",
-    "material-ui": "^0.18.7",
     "prop-types": "^15.5.10",
-    "react-color": "^2.13.4",
-    "react-tap-event-plugin": "^2.0.1",
     "resonance": "^0.9.5"
   },
   "peerDependencies": {
@@ -31,14 +37,17 @@
   },
   "devDependencies": {
     "nwb": "0.18.x",
+    "material-ui": "^0.18.7",
+    "react-color": "^2.13.4",
     "react": "^15.6.1",
+    "react-tap-event-plugin": "^2.0.1",
     "react-dom": "^15.6.1"
   },
-  "author": "",
-  "homepage": "",
+  "author": "Mode Lab",
+  "homepage": "https://modelab.is/",
   "license": "MIT",
-  "repository": "",
-  "keywords": [
-    "react-component"
-  ]
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/modelab/react-radial"
+  },
 }
