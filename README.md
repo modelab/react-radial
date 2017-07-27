@@ -16,7 +16,7 @@ The radial component is built with SVG, and can be ported into DIV, canvas, WebG
 
 <div>
 <h2 className="attHeader">react-radial attributes</h2>
-<table style=width:100%;>
+<table style=width:100%;font-size:10px;>
     <thead>
     <tr>
         <th>Name</th>
