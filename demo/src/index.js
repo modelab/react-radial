@@ -117,8 +117,8 @@ class Demo extends Component {
       stroke: `rgba(${this.state.stroke.r},${this.state.stroke.g},${this.state.stroke.b},${this.state.stroke.a})`,
       fill: `rgba(${this.state.fill.r},${this.state.fill.g},${this.state.fill.b},${this.state.fill.a})`,
       strokeWidth: this.state.strokeWidth,
-      buttons: `['button1','button2',...${this.state.buttonCount} strings}]`,
-      buttonFunctions: `[()=>console.log(you've clicked button 1!),...${this.state.buttonCount} functions]`,
+      buttons: `['button1','button2', ...${this.state.buttonCount} strings}]`,
+      buttonFunctions: `[()=>console.log(you've clicked button 1!), ...${this.state.buttonCount} functions]`,
       innerRadius: this.state.sliderRadiusInner,
       outerRadius: this.state.sliderRadiusOuter
     }
@@ -131,7 +131,12 @@ class Demo extends Component {
           <a href='https://modelab.is' target="_blank">modelab</a></span>
       </div >
       <div id='codeBlock' style={{ paddingTop: '20px' }}><code>
-        {`<ReactRadial ` + Object.keys(codeOb).map(key => `${key}=${JSON.stringify(codeOb[key])}`).join(' ') + `/>`}
+        {`<ReactRadial ` + Object.keys(codeOb).map(key => (
+          key === 'stroke' || key === 'fill' ?
+            `${key}={"${(codeOb[key])}"}` :
+            `${key}={${(codeOb[key])}}`)
+        ).join(' ') + `/>`
+        }
       </code></div>
       <div style={{ position: 'absolute', bottom: '20px', width: '75%', marginLeft: '25%', textAlign: 'center', pointerEvents: 'none' }}>
         {this.state.message || 'click canvas to close. click canvas again to open.'}
