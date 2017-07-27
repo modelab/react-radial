@@ -25,13 +25,13 @@ The radial component is built with SVG, and can be ported into DIV, canvas, WebG
     <tr>
         <td>buttons</td>
         <td>array</td>
-        <td>["button1","button2","button3","button4","button5"],</td>
+        <td>["button1",...(5)],</td>
         <td>an array of strings representing each button's label</td>
     </tr>
     <tr>
         <td>buttonFunctions</td>
         <td>array</td>
-        <td>[() => console.log('clicked button 1'),() => console.log('clicked button 2'),() => console.log('clicked button 3'),() => console.log('clicked button 4'),() => console.log('clicked button 5')]</td>
+        <td>[() => console.log('clicked button 1'),...(5)]</td>
         <td>an array of functions triggered by clicking each button</td>
     </tr>
     <tr>
