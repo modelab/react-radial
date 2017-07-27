@@ -31107,7 +31107,7 @@ var Demo = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'a',
             { href: 'https://modelab.is', target: '_blank' },
-            'Modelab'
+            'modelab'
           )
         )
       ),
@@ -68639,4 +68639,4 @@ module.exports = function(exec){
 /***/ })
 
 },[0]);
-//# sourceMappingURL=demo.daf9e2b7.js.map
+//# sourceMappingURL=demo.3917b49a.js.map
