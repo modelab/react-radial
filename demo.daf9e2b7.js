@@ -31098,6 +31098,16 @@ var Demo = function (_Component) {
             'a',
             { href: 'https://github.com/modelab/react-radial', target: '_blank' },
             'github'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'span',
+            { style: { paddingLeft: '10px', paddingRight: '10px' } },
+            '|'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'a',
+            { href: 'https://modelab.is', target: '_blank' },
+            'Modelab'
           )
         )
       ),
@@ -68629,4 +68639,4 @@ module.exports = function(exec){
 /***/ })
 
 },[0]);
-//# sourceMappingURL=demo.b8aa925a.js.map
+//# sourceMappingURL=demo.daf9e2b7.js.map
