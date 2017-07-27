@@ -4,7 +4,9 @@
 [![npm package][npm-badge]][npm]
 [![Coveralls][coveralls-badge]][coveralls]
 
-Describe react-radial here.
+<a href="https://modelab.github.io/react-radial/" target="_blank"/>
+	<img width="100%" src="https://github.com/ekatzenstein/emojimation/blob/master/emoji.gif?raw=true" alt="chalk">
+</a>
 
 [build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
 [build]: https://travis-ci.org/user/repo
