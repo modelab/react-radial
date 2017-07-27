@@ -6,7 +6,7 @@
 }
 #codeBlock{
     margin-left: calc(25% + 40px);
-    width: calc(80% - calc(25% + 55px));
+    width: calc(90% - calc(25% + 55px));
     padding:15px;
 }
 h1{

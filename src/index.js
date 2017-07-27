@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NodeGroup } from 'resonance';
+import PropTypes from 'prop-types';
 import { describeArc, describeArcRegion } from './util/helper';
 import Radial from './Radial';
 import { arrayFill } from './util/helper';
@@ -116,7 +117,7 @@ class ReactRadial extends Component {
     };
 
     return (
-      <div style={{ width: '100%', height: '100%' }} onClick={this._handleClick}>
+      <div style={{ width: '100%', height: '100%', position: 'absolute' }} onClick={this._handleClick}>
         {this.state.enabled ?
           <Radial {...propOb}
             updateData={this._updateData}
@@ -127,5 +128,44 @@ class ReactRadial extends Component {
     )
   }
 }
+
+ReactRadial.propTypes = {
+  delay: PropTypes.number,
+  duration: PropTypes.number,
+  innerRadius: PropTypes.number,
+  outerRadius: PropTypes.number,
+  buttons: PropTypes.array,
+  buttonFunctions: PropTypes.array,
+  strokeWidth: PropTypes.number,
+  stroke: PropTypes.string,
+  fill: PropTypes.string,
+  autoLoad: PropTypes.bool,
+};
+
+ReactRadial.defaultProps = {
+  delay: 80,
+  duration: 400,
+  innerRadius: 20,
+  outerRadius: 120,
+  buttons: [
+    "button1",
+    "button2",
+    "button3",
+    "button4",
+    "button5"
+  ],
+  buttonFunctions: [
+    () => console.log('clicked button 1'),
+    () => console.log('clicked button 2'),
+    () => console.log('clicked button 3'),
+    () => console.log('clicked button 4'),
+    () => console.log('clicked button 5'),
+  ],
+  strokeWidth: 2,
+  stroke: 'rgba(255,255,255,1)',
+  fill: 'rgba(0,0,0,.8)',
+  autoLoad: false,
+};
+
 export default ReactRadial;
 

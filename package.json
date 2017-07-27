@@ -21,6 +21,7 @@
   "dependencies": {
     "d3": "^4.10.0",
     "material-ui": "^0.18.7",
+    "prop-types": "^15.5.10",
     "react-color": "^2.13.4",
     "react-tap-event-plugin": "^2.0.1",
     "resonance": "^0.9.5"
