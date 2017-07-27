@@ -5,7 +5,7 @@
 [![Coveralls][coveralls-badge]][coveralls]
 
 <a href="https://modelab.github.io/react-radial/" target="_blank"/>
-	<img width="100%" src="https://github.com/ekatzenstein/emojimation/blob/master/emoji.gif?raw=true" alt="chalk">
+	<img width="100%" src="https://github.com/modelab/react-radial/blob/master/site.png" alt="chalk">
 </a>
 
 [build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
