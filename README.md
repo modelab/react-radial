@@ -1,9 +1,5 @@
 # react-radial
 
-[![Travis][build-badge]][build]
-[![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
-
 <a href="https://modelab.github.io/react-radial/" target="_blank"/>
 	<img width="100%" src="https://github.com/modelab/react-radial/blob/master/site.png" alt="chalk">
 </a>
@@ -15,7 +11,7 @@ This is a straightforward, customizable radial menu, built with [React](https://
 The radial component is built with SVG, and can be ported into DIV, canvas, WebGL scenes, etc. We use radial menus for 3D interaction often, and decided to build a generic component for future use.
 
 <div>
-<h2 className="attHeader">react-radial attributes</h2>
+<h2>react-radial attributes</h2>
 <table style=width:100%;font-size:10px;>
     <thead>
     <tr>
