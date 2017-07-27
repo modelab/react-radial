@@ -138,7 +138,7 @@ class Demo extends Component {
       <Drawer
         width='25%'
       >
-        <div style={{ width: '75%', margin: '0 auto', marginTop: '60px', fontSize: '12px', padding: '0px' }}>
+        <div style={{ width: '75%', margin: '0 auto', marginTop: '30px', fontSize: '12px', padding: '0px' }}>
           <h3 style={{ marginBottom: '40px' }}>react-radial parameters</h3>
           <div style={{ marginBottom: '40px' }}>
             <h4>geometry</h4>
