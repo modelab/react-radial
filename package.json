@@ -36,12 +36,13 @@
     "react": "15.x"
   },
   "devDependencies": {
-    "nwb": "0.18.x",
+    "gh-pages": "^1.0.0",
     "material-ui": "^0.18.7",
-    "react-color": "^2.13.4",
+    "nwb": "0.18.x",
     "react": "^15.6.1",
-    "react-tap-event-plugin": "^2.0.1",
-    "react-dom": "^15.6.1"
+    "react-color": "^2.13.4",
+    "react-dom": "^15.6.1",
+    "react-tap-event-plugin": "^2.0.1"
   },
   "author": "Mode Lab",
   "homepage": "https://modelab.is/",
