@@ -7,8 +7,7 @@
   "files": [
     "css",
     "es",
-    "lib",
-    "umd"
+    "lib"
   ],
   "keywords": [
     "radial",
