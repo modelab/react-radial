@@ -12,17 +12,6 @@ export const renderObject = (data, i) => {
             style: {
                 transform: `translate(${strokeWidth}px,${strokeWidth}px)`
             },
-            onMouseOver: () => () => {
-                // these are minor faux-dom operations, styling only
-                d3.select(`#arc${text}`).style('fill-opacity', 1);
-                // this id matches the svg group id specified above
-                document.body.style.cursor = "pointer";
-            },
-            onMouseLeave: () => () => {
-                d3.select(`#arc${text}`).style('fill-opacity', .6);
-                document.body.style.cursor = "default";
-            },
-            onClick: (event) => action
         },
         region: {
             // main pie slice

@@ -25,38 +25,37 @@ class Module extends Component {
   }
   _updateData() {
     if (!this.state.transitioning) {
-      this._updateState(this._getDataObject(this.props.innerRadius, this.props.outerRadius))
+      this._updateState(this._getDataObject(this.props.innerRadius, this.props.outerRadius, { ...this.props }))
     }
   }
 
-  _buttonSelect(event) {
+  _buttonSelect() {
     if (!this.state.transitioning) {
-      this._updateState(this._getDataObject(0, 0)); // close menu
+      this._updateState(this._getDataObject(0, 0, { ...this.props })); // close menu
       setTimeout(() => {
         document.body.style.cursor = 'default';
         this.setState({ enabled: false, transitioning: false })
       }, this.props.duration + this.props.buttons.length * this.props.delay // wait until animation finishes
       )
     }
-    event.stopPropagation(); // prevent from bubbling up to other event handlers
   }
-  _getDataObject(radInner = 0, radOuter = 0) {
-    const numberOfTabs = this.props.buttons.length;
-    const data = this.props.buttons.map((d, i) => {
+  _getDataObject(radInner = 0, radOuter = 0, propOb) {
+    const numberOfTabs = propOb.buttons.length;
+    const data = propOb.buttons.map((d, i) => {
       return (
         {
           key: d,
-          text: this.props.buttons[i],
-          stroke: arrayFill(this.props.stroke, numberOfTabs)[i],
-          fill: arrayFill(this.props.fill, numberOfTabs)[i],
-          strokeWidth: arrayFill(this.props.strokeWidth, numberOfTabs)[i],
+          text: d,
+          stroke: arrayFill(propOb.stroke, numberOfTabs)[i],
+          fill: arrayFill(propOb.fill, numberOfTabs)[i],
+          strokeWidth: arrayFill(propOb.strokeWidth, numberOfTabs)[i],
           action: arrayFill((event) => {
             this._buttonSelect(event);
-            this.props.action[i]();
+            propOb.action[i]();
           }, numberOfTabs)[i],
-          cx: this.props.innerRadius + this.props.outerRadius,
-          cy: this.props.innerRadius + this.props.outerRadius,
-          radiusDiff: radOuter - this.props.strokeWidth,
+          cx: propOb.innerRadius + propOb.outerRadius,
+          cy: propOb.innerRadius + propOb.outerRadius,
+          radiusDiff: radOuter - propOb.strokeWidth,
           radius: radInner, angleStart: i * 360 / numberOfTabs,
           angleEnd: (i + 1) * 360 / numberOfTabs,
         }
@@ -74,22 +73,42 @@ class Module extends Component {
         const div = event.target;
         const cx = (event.clientX - div.offsetLeft);
         const cy = (event.clientY - div.offsetTop);
-        this.setState({ cx, cy, enabled: true, data: this._getDataObject(0, 0) });
+        this.setState({ cx, cy, enabled: true, data: this._getDataObject(0, 0, { ...this.props }) });
       }
       else {
         this.setState({ enabled: false })
       }
     }
   }
+  shouldComponentUpdate() {
+    return !this.state.transitioning;
+  }
+
+  componentWillUpdate(nextProps) {
+    if (!this.state.transitioning && (
+      nextProps.innerRadius !== this.props.innerRadius ||
+      nextProps.outerRadius !== this.props.outerRadius ||
+      nextProps.buttons.length !== this.props.buttons.length ||
+      nextProps.strokeWidth !== this.props.strokeWidth
+    )) {
+      this._transitionStart();
+      this._updateState(this._getDataObject(nextProps.innerRadius, nextProps.outerRadius, { ...nextProps }))
+      setTimeout(this._transitionEnd, this.props.duration + this.props.buttons.length * this.props.delay);
+      // wait until animation finishes
+      // the transition functions needs to be used due to a bug in resonance 0.9.3.
+      // they should otherwise live in the events objects of the update function
+    }
+  }
 
   render() {
+
     const propOb = {
       ...this.props,
       ...this.state,
     };
 
     return (
-      <div style={{ width: '100%', height: '100%' }} onClick={this._handleClick}>
+      <div style={{ width: '100%', height: '100%', background: 'red' }} onClick={this._handleClick}>
         {this.state.enabled ?
           <Radial {...propOb}
             updateData={this._updateData}

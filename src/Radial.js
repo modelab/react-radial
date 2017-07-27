@@ -7,11 +7,37 @@ class Radial extends Component {
   componentDidMount() {
     this.props.updateData();
   }
+
+  componentDidUpdate() {
+    // this needs to be called due to a bug in the resonance v0.9.5, it should otherwise live in the render object
+    const { data } = this.props;
+    data.forEach(d => {
+      const { action, text } = d;
+      d3.select(`#arc${text}`)
+        .on('mouseover', function () {
+          // these are minor faux-dom operations, styling only
+          d3.select(`#arc${text}`).style('fill-opacity', 1);
+          // this id matches the svg group id specified above
+          document.body.style.cursor = "pointer";
+        })
+        .on('mouseout', function () {
+          // these are minor faux-dom operations, styling only
+          d3.select(`#arc${text}`).style('fill-opacity', .6);
+          // this id matches the svg group id specified above
+          document.body.style.cursor = "default";
+        })
+        .on('click', function (event) {
+          d3.event.stopPropagation();
+          action()
+        })
+    })
+  }
   render() {
     const _this = this;
     const { innerRadius, outerRadius, stroke, strokeWidth, duration, delay, cx, cy, data } = this.props;
     const totalRadius = innerRadius + outerRadius;
     const size = totalRadius * 2 + strokeWidth * 2;
+
     return (
       <div style={{
         position: 'fixed',
@@ -31,26 +57,20 @@ class Radial extends Component {
           <NodeGroup
             data={data}
             keyAccessor={(d) => {
-              return d.key; //needed for unique key (just like react)
+              return d.key;
             }}
-            start={(data, i) => {
-              return { ...renderObject(data, i) } //main object
+            start={(dat, i) => {
+              return {
+                ...renderObject(dat, i)
+              }
             }}
             update={(dat, i) => {
               return ({
-                ...renderObject(dat, i), //main object
-                timing: { //transition timing
+                ...renderObject(dat, i),
+                timing: {
                   duration,
                   delay: i * delay,
                   ease: d3.easeCircleInOut
-                },
-                events: { //this is needed to prevent DOM failure on interruptions
-                  start() {
-                    if (i === 0) _this.props.start(); //prevent interruption at start of transition
-                  },
-                  end() {
-                    if (i === data.length - 1) _this.props.end(); //end transition on last node
-                  },
                 },
               })
             }}
@@ -58,7 +78,7 @@ class Radial extends Component {
             {(nodes) => {
               return (
                 <g>
-                  {nodes.map(({ key, data, state }) => { //state here comes from our render object
+                  {nodes.map(({ key, data, state }) => { // state here comes from our render object
                     return (
                       <g {...state.g} >
                         <path {...state.region} />
@@ -73,11 +93,19 @@ class Radial extends Component {
               )
             }}
           </NodeGroup>
+          <circle
+            cx={innerRadius + outerRadius + strokeWidth}
+            cy={innerRadius + outerRadius + strokeWidth}
+            r={3}
+            fill={'none'}
+            stroke={stroke}
+            opacity={.5}
+          />
         </svg>
+
       </div >
     );
   }
 }
 
 export default Radial;
-
