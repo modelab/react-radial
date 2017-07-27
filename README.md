@@ -1,6 +1,6 @@
 # react-radial
 
-By (Mode Lab)[https://modelab.is]
+By [Mode Lab](https://modelab.is)
 
 ## Intro
 
