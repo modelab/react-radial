@@ -4,12 +4,21 @@ import { describeArc, describeArcRegion } from './util/helper';
 import Radial from './Radial';
 import { arrayFill } from './util/helper';
 
-class Module extends Component {
+class ReactRadial extends Component {
   constructor(props) {
     super(props);
     this.state = {
       transitioning: false,
-      enabled: false
+      enabled: props.autoLoad
+    }
+    if (props.autoLoad) {
+      this.state = {
+        ...this.state,
+        cx: innerWidth * .625,
+        cy: props.innerRadius + props.outerRadius + 80,
+        data: this._getDataObject(0, 0, { ...props }),
+        enabled: true
+      }
     }
     this._updateData = this._updateData.bind(this);
     this._handleClick = this._handleClick.bind(this);
@@ -49,9 +58,9 @@ class Module extends Component {
           stroke: arrayFill(propOb.stroke, numberOfTabs)[i],
           fill: arrayFill(propOb.fill, numberOfTabs)[i],
           strokeWidth: arrayFill(propOb.strokeWidth, numberOfTabs)[i],
-          action: arrayFill((event) => {
+          buttonFunctions: arrayFill((event) => {
             this._buttonSelect(event);
-            propOb.action[i]();
+            propOb.buttonFunctions[i]();
           }, numberOfTabs)[i],
           cx: propOb.innerRadius + propOb.outerRadius,
           cy: propOb.innerRadius + propOb.outerRadius,
@@ -101,14 +110,13 @@ class Module extends Component {
   }
 
   render() {
-
     const propOb = {
       ...this.props,
       ...this.state,
     };
 
     return (
-      <div style={{ width: '100%', height: '100%', background: 'red' }} onClick={this._handleClick}>
+      <div style={{ width: '100%', height: '100%' }} onClick={this._handleClick}>
         {this.state.enabled ?
           <Radial {...propOb}
             updateData={this._updateData}
@@ -119,6 +127,5 @@ class Module extends Component {
     )
   }
 }
-
-export default Module;
+export default ReactRadial;
 

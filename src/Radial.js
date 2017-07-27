@@ -12,7 +12,7 @@ class Radial extends Component {
     // this needs to be called due to a bug in the resonance v0.9.5, it should otherwise live in the render object
     const { data } = this.props;
     data.forEach(d => {
-      const { action, text } = d;
+      const { buttonFunctions, text } = d;
       d3.select(`#arc${text}`)
         .on('mouseover', function () {
           // these are minor faux-dom operations, styling only
@@ -28,16 +28,15 @@ class Radial extends Component {
         })
         .on('click', function (event) {
           d3.event.stopPropagation();
-          action()
+          buttonFunctions()
         })
     })
   }
   render() {
     const _this = this;
-    const { innerRadius, outerRadius, stroke, strokeWidth, duration, delay, cx, cy, data } = this.props;
+    const { innerRadius, outerRadius, stroke, strokeWidth, duration, delay, cx, cy, data, fill } = this.props;
     const totalRadius = innerRadius + outerRadius;
     const size = totalRadius * 2 + strokeWidth * 2;
-
     return (
       <div style={{
         position: 'fixed',
@@ -76,15 +75,16 @@ class Radial extends Component {
             }}
           >
             {(nodes) => {
+
               return (
                 <g>
                   {nodes.map(({ key, data, state }) => { // state here comes from our render object
                     return (
                       <g {...state.g} >
-                        <path {...state.region} />
+                        <path {...{ ...state.region, style: { ...state.region.style, ...{ stroke, fill } } }} />
                         <path {...state.arc} />
                         <text {...state.text} >
-                          <textPath {...state.textPath}>{data.text}</textPath>
+                          <textPath {...{ ...state.textPath, fill: stroke }}> {data.text}</textPath>
                         </text>
                       </g>
                     )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 
-import RadialMenu from '../../src'
+import ReactRadial from '../../src'
 
 
 import { ChromePicker } from 'react-color';
@@ -36,7 +36,12 @@ class Demo extends Component {
       strokeWidthDisplay: 2,
       buttonCount: 5,
       buttonCountDisplay: 5,
-      update: false
+      update: false,
+      stroke: { r: 255, g: 255, b: 255, a: 1 },
+      fill: { r: 0, g: 0, b: 0, a: .8 },
+      displayColorPickerStroke: false,
+      displayColorPickerFill: false,
+
     }
     this.handleSlider = this.handleSlider.bind(this);
     this.handleSliderUpdate = this.handleSliderUpdate.bind(this);
@@ -67,7 +72,7 @@ class Demo extends Component {
   }
 
   dummyFunction(i) {
-    this.setState({ message: `You've clicked button number ${i}!` })
+    this.setState({ message: `you've clicked button number ${i}!` })
   }
 
   handleSlider(event, value, key) {
@@ -77,58 +82,117 @@ class Demo extends Component {
     this.setState({ [key]: this.state[`${key}Display`] })
   }
 
+  sliderMaker = (array) => (
+    array.map((ob, i) =>
+      <div key={i}>
+        {`${ob.title}: ` + this.state[`${ob.value}Display`]}
+        <Slider
+          min={ob.min}
+          max={ob.max}
+          step={ob.step}
+          value={this.state[`${ob.value}Display`]}
+          onChange={(event, value) => this.handleSlider(event, value, `${ob.value}Display`)}
+          onDragStop={() => this.handleSliderUpdate(ob.value)}
+          sliderStyle={{ marginTop: '10px', marginBottom: '10px' }}
+        />
+      </div>
+    )
+  )
+  colorHandleClick = (key) => {
+    this.setState({ [key]: !this.state[key] })
+  };
+
+  colorHandleClose = (key) => {
+    this.setState({ [key]: false })
+  };
+
+  colorHandleChange = (color, key) => {
+    this.setState({ [key]: color.rgb })
+  };
+
   render() {
-    console.log(this.state)
-    return <div style={{ width: '100%', height: '100vh' }}>
-      <h1 >React-Radial Demo</h1>
-      {this.state.message}
+    const codeOb = {
+      delay: this.state.delay,
+      duration: this.state.duration,
+      stroke: `rgba(${this.state.stroke.r},${this.state.stroke.g},${this.state.stroke.b},${this.state.stroke.a})`,
+      fill: `rgba(${this.state.fill.r},${this.state.fill.g},${this.state.fill.b},${this.state.fill.a})`,
+      strokeWidth: this.state.strokeWidth,
+      buttons: `['button1','button2',...${this.state.buttonCount} strings}]`,
+      buttonFunctions: `[()=>console.log(you've clicked button 1!),...${this.state.buttonCount} functions]`,
+      innerRadius: this.state.sliderRadiusInner,
+      outerRadius: this.state.sliderRadiusOuter
+    }
+    return <div id='main' style={{ width: '100%', height: '100vh' }}>
+      <div id='header' style={{ background: codeOb.fill, color: codeOb.stroke, fontWeight: 100 }}>
+        <span style={{ fontSize: '20px' }} >react-radial demo</span>
+        <span style={{ float: 'right', paddingRight: '10px' }}>
+          <a href='https://www.npmjs.com/package/react-radial' target="_blank">npm</a><span style={{ paddingLeft: '10px', paddingRight: '10px' }}>|</span>
+          <a href='https://github.com/modelab/react-radial' target="_blank">github</a></span>
+      </div>
+      <div id='codeBlock' style={{ paddingTop: '20px' }}><code>
+        {`<ReactRadial ` + Object.keys(codeOb).map(key => `${key}=${JSON.stringify(codeOb[key])}`).join(' ') + `/>`}
+      </code></div>
+      <div style={{ position: 'absolute', bottom: '20px', width: '75%', marginLeft: '25%', textAlign: 'center', pointerEvents: 'none' }}>
+        {this.state.message || 'click canvas to close. click canvas again to open.'}
+      </div>
       <Drawer
         width='25%'
       >
-        <div style={{ width: '75%', margin: '0 auto', marginTop: '30px', fontSize: '12px' }}>
-          {uiArray.map((ob, i) =>
-            <div key={i}>
-              {`${ob.title}: ` + this.state[`${ob.value}Display`]}
-              <Slider
-                min={ob.min}
-                max={ob.max}
-                step={ob.step}
-                value={this.state[`${ob.value}Display`]}
-                onChange={(event, value) => this.handleSlider(event, value, `${ob.value}Display`)}
-                onDragStop={() => this.handleSliderUpdate(ob.value)}
+        <div style={{ width: '75%', margin: '0 auto', marginTop: '30px', fontSize: '12px', padding: '0px' }}>
+          <h3 style={{ marginBottom: '40px' }}>react-radial parameters</h3>
+          <div style={{ marginBottom: '40px' }}>
+            <h4>geometry</h4>
+            {this.sliderMaker(geoArray)}
+          </div>
+          <div style={{ marginBottom: '40px' }}>
+            <h4>color</h4>
+            <div style={{ width: '100%' }}>
+              <div style={{ marginBottom: '15px' }}> stroke color</div>
+              <Color
+                handleClick={this.colorHandleClick}
+                handleClose={this.colorHandleClose}
+                handleChange={this.colorHandleChange}
+                enabled={this.state.displayColorPickerStroke}
+                color={this.state.stroke}
+                param='stroke'
+                view='displayColorPickerStroke'
               />
             </div>
-          )}
-          <div style={{ width: '100%' }}>
-            <div style={{ marginBottom: '15px' }}> stroke color</div>
-            <Color style={{ width: '100%' }} />
+            <div style={{ width: '100%' }}>
+              <div style={{ marginTop: '15px', marginBottom: '15px' }}> fill color</div>
+              <Color
+                handleClick={this.colorHandleClick}
+                handleClose={this.colorHandleClose}
+                handleChange={this.colorHandleChange}
+                enabled={this.state.displayColorPickerFill}
+                color={this.state.fill}
+                param='fill'
+                view='displayColorPickerFill'
+              />
+            </div>
           </div>
-          <br />
-          <div style={{ width: '100%' }}>
-            <div style={{ marginTop: '15px', marginBottom: '15px' }}> fill color</div>
-            <Color />
-          </div>
+          <h4>time</h4>
+          {this.sliderMaker(timeArray)}
         </div>
       </Drawer>
-      <RadialMenu
+      <ReactRadial
         delay={this.state.delay}
         duration={this.state.duration}
         innerRadius={this.state.sliderRadiusInner}
         outerRadius={this.state.sliderRadiusOuter}
         buttons={this.arrayMaker(this.state.buttonCount, 'button')}
-        action={this.arrayMaker(this.state.buttonCount, 'function')}
+        buttonFunctions={this.arrayMaker(this.state.buttonCount, 'function')}
         strokeWidth={this.state.strokeWidth}
-        stroke="white"
-        fill="rgba(0,0,0,.8)"
+        stroke={`rgba(${this.state.stroke.r},${this.state.stroke.g},${this.state.stroke.b},${this.state.stroke.a})`}
+        fill={`rgba(${this.state.fill.r},${this.state.fill.g},${this.state.fill.b},${this.state.fill.a})`}
+        autoLoad
       />
-    </div>
+    </div >
   }
 }
 
 
-
-
-const uiArray = [
+const geoArray = [
   {
     title: "button count",
     value: 'buttonCount',
@@ -157,6 +221,10 @@ const uiArray = [
     max: 10,
     step: .1
   },
+
+]
+
+const timeArray = [
   {
     title: "duration",
     value: 'duration',

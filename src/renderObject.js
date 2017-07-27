@@ -2,7 +2,7 @@ import { describeArc, describeArcRegion } from './util/svghelper';
 import * as d3 from 'd3';
 
 export const renderObject = (data, i) => {
-    const { cx, cy, radius, angleStart, angleEnd, key, fill, strokeWidth, radiusDiff, stroke, action, text } = data;
+    const { cx, cy, radius, angleStart, angleEnd, key, fill, strokeWidth, radiusDiff, stroke, buttonFunctions, text } = data;
     return ({
         g: {
             // parent svg group
@@ -35,9 +35,8 @@ export const renderObject = (data, i) => {
         },
         textPath: {
             // each line of text
-            fontSize: (radius + radiusDiff) / 9,
             fontWeight: 100,
-            fill: 'white',
+            fill: stroke,
             startOffset: '50%',
             xlinkHref: "#" + angleStart
             // this matches the arc id (above)

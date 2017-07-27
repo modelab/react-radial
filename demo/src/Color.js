@@ -1,28 +1,28 @@
 import React from 'react'
 import reactCSS from 'reactcss'
 import { ChromePicker } from 'react-color'
+import './style.css';
 
-class SketchExample extends React.Component {
-    state = {
-        displayColorPicker: false,
-        color: {
-            r: '241',
-            g: '112',
-            b: '19',
-            a: '1',
-        },
-    };
+class ChromePick extends React.Component {
+    constructor(props) {
+        super(props);
+        const { r, g, b, a } = props.color;
+        this.state = {
+            displayColorPicker: false,
+            color: { r, g, b, a },
+        };
+    }
 
     handleClick = () => {
-        this.setState({ displayColorPicker: !this.state.displayColorPicker })
+        this.props.handleClick(this.props.view)
     };
 
     handleClose = () => {
-        this.setState({ displayColorPicker: false })
+        this.props.handleClick(this.props.view)
     };
 
     handleChange = (color) => {
-        this.setState({ color: color.rgb })
+        this.props.handleChange(color, this.props.param)
     };
 
     render() {
@@ -33,7 +33,8 @@ class SketchExample extends React.Component {
                     width: '100%',
                     height: '8px',
                     borderRadius: '2px',
-                    background: `rgba(${this.state.color.r}, ${this.state.color.g}, ${this.state.color.b}, ${this.state.color.a})`,
+                    border: '1px solid black',
+                    background: `rgba(${this.props.color.r}, ${this.props.color.g}, ${this.props.color.b}, ${this.props.color.a})`,
                 },
                 swatch: {
                     width: '100%',
@@ -57,15 +58,14 @@ class SketchExample extends React.Component {
                 },
             },
         });
-
         return (
             <div>
                 <div style={styles.swatch} onClick={this.handleClick}>
                     <div style={styles.color} />
                 </div>
-                {this.state.displayColorPicker ? <div style={styles.popover}>
+                {this.props.enabled ? <div style={styles.popover}>
                     <div style={styles.cover} onClick={this.handleClose} />
-                    <ChromePicker color={this.state.color} onChange={this.handleChange} />
+                    <ChromePicker color={this.props.color} onChange={this.handleChange} />
                 </div> : null}
 
             </div>
@@ -73,4 +73,4 @@ class SketchExample extends React.Component {
     }
 }
 
-export default SketchExample
+export default ChromePick

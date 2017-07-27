@@ -1,0 +1,41 @@
+#header{
+    margin-top:40px;
+    margin-left: calc(25% + 40px);
+    width: calc(100% - calc(25% + 55px));
+    padding:15px;
+}
+#codeBlock{
+    margin-left: calc(25% + 40px);
+    width: calc(80% - calc(25% + 55px));
+    padding:15px;
+}
+h1{
+    font-family: Roboto, sans-serif;
+    font-weight:100;
+    float:left;
+}
+a{
+    text-decoration:none;
+    color:white;
+}
+a:hover{
+    text-decoration:underline;
+}
+a:visited{
+    text-decoration:none;
+}
+
+body{
+    padding:0px;
+    margin:0px;
+    font-family: Roboto, sans-serif;
+    font-weight:100;
+    overflow-x: hidden;
+    background: repeating-linear-gradient(
+    45deg,
+    rgba(0,0,0,.05),
+    rgba(0,0,0,.05) 1px,
+    #ffffff 2px,
+    #ffffff 10px
+    )
+}
