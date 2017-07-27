@@ -1,6 +1,6 @@
 {
   "name": "react-radial",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a radial component built with react and resonance",
   "main": "lib/index.js",
   "module": "es/index.js",
