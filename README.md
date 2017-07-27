@@ -10,7 +10,7 @@ The radial component is built with SVG, and can be ported into a div, canvas, We
 
 <a href="https://modelab.github.io/react-radial/" target="_blank"/>
 	<img width="100%" src="https://github.com/modelab/react-radial/blob/master/demo.gif" alt="chalk">
-    <img width="100%" src="https://github.com/modelab/react-radial/blob/master/site.png" alt="chalk" style=display:hidden;>
+    <img width="100%" src="https://github.com/modelab/react-radial/blob/master/site.png" alt="chalk" style=display:none;>
 </a>
 
 ## Getting Started
