@@ -128,7 +128,7 @@ class Demo extends Component {
         <span style={{ float: 'right', paddingRight: '10px' }}>
           <a href='https://www.npmjs.com/package/react-radial' target="_blank">npm</a><span style={{ paddingLeft: '10px', paddingRight: '10px' }}>|</span>
           <a href='https://github.com/modelab/react-radial' target="_blank">github</a><span style={{ paddingLeft: '10px', paddingRight: '10px' }}>|</span>
-          <a href='https://modelab.is' target="_blank">Modelab</a></span>
+          <a href='https://modelab.is' target="_blank">modelab</a></span>
       </div >
       <div id='codeBlock' style={{ paddingTop: '20px' }}><code>
         {`<ReactRadial ` + Object.keys(codeOb).map(key => `${key}=${JSON.stringify(codeOb[key])}`).join(' ') + `/>`}
