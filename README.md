@@ -9,7 +9,7 @@ This is a straightforward, customizable radial menu, built with [React](https://
 The radial component is built with SVG, and can be ported into a div, canvas, WebGL scene, etc. We use radial menus for 3D interaction often, and decided to build a generic component for future use. The demo file is an interactive environment for defining how you want the radial menu to look. [Check it out here](https://modelab.github.io/react-radial/).
 
 <a href="https://modelab.github.io/react-radial/" target="_blank"/>
-	<img width="100%" src="https://github.com/modelab/react-radial/blob/master/demo.gif" alt="chalk">
+	<img width="100%" src="https://github.com/modelab/react-radial/blob/master/demo.gif" alt="demo">
 </a>
 
 ## Getting Started
