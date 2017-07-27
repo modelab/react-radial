@@ -4,12 +4,13 @@ By [Mode Lab](https://modelab.is)
 
 ## Intro
 
-This is a straightforward, customizable radial menu, built with [React](https://facebook.github.io/react/) and [Resonance](https://www.npmjs.com/package/resonance)(a library that allows React and [D3js](https://d3js.org/) to play along nicely).
+This is a straightforward, customizable radial menu, built with [React](https://facebook.github.io/react/) and [Resonance](https://www.npmjs.com/package/resonance) (a library that allows React and [D3js](https://d3js.org/) to play along nicely).
 
 The radial component is built with SVG, and can be ported into a div, canvas, WebGL scene, etc. We use radial menus for 3D interaction often, and decided to build a generic component for future use. The demo file is an interactive environment for defining how you want the radial menu to look. [Check it out here](https://modelab.github.io/react-radial/).
 
 <a href="https://modelab.github.io/react-radial/" target="_blank"/>
-	<img width="100%" src="https://github.com/modelab/react-radial/blob/master/site.png" alt="chalk">
+	<img width="100%" src="https://github.com/modelab/react-radial/blob/master/demo.gif" alt="chalk">
+    <img width="100%" src="https://github.com/modelab/react-radial/blob/master/site.png" alt="chalk" style=display:hidden;>
 </a>
 
 ## Getting Started
