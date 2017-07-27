@@ -25,7 +25,7 @@ The radial component is built with SVG, and can be ported into DIV, canvas, WebG
     <tr>
         <td>buttons</td>
         <td>array</td>
-        <td>["button1",...(5)],</td>
+        <td>["button1",...(5)]</td>
         <td>an array of strings representing each button's label</td>
     </tr>
     <tr>
