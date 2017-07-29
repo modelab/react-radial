@@ -31,6 +31,8 @@ class Component extends React.Component {
 }
 ```
 
+Remmeber to click on your canvas/div after loading the page (the radial menu does not load automatically). Please post any issues.
+
 
 <div>
 <h2>react-radial attributes</h2>
